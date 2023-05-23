@@ -1,0 +1,38 @@
+<idea-plugin>
+  <id>space.cyberaster.common.ncc.plugin.NCCPlugin</id>
+  <name>NCC通用插件</name>
+  <version>1.0</version>
+  <vendor email="AsterRdh@live.cn" url="http://www.CyberAster.space">CyberAster</vendor>
+
+  <description>
+    <![CDATA[
+    <br>为了解决NCC系统开发的一堆不便和垃圾设计，开发的辅助编码插件，主要功能包括：</br>
+    <br>1. 代码GB2123 和 utf-8的转化</br>
+    <br>2. 复制yyconfig和bmf到home</br>
+    <br>3. 大小写、命名规则转换</br>
+    <br>....</br>
+    ]]>
+  </description>
+
+  <change-notes><![CDATA[
+     <br>这是第一次提交，第一个版本，凑不齐40各字！</br>
+     <br>这是第一次提交，第一个版本，凑不齐40各字！</br>
+    ]]>
+  </change-notes>
+
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>
