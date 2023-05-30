@@ -2,13 +2,13 @@
   <id>space.cyberaster.common.ncc.plugin.NCCPlugin</id>
   <name>NCC通用插件</name>
   <version>1.0</version>
-  <vendor email="AsterRdh@live.cn" url="http://www.CyberAster.space">CyberAster</vendor>
+  <vendor email="AsterRdh@live.cn" url="https://github.com/AsterRdh/NCC-IdeaPlugin.git">CyberAster</vendor>
 
   <description>
     <![CDATA[
     <br>为了解决NCC系统开发的一堆不便和垃圾设计，开发的辅助编码插件，主要功能包括：</br>
     <br>1. 代码GB2123 和 utf-8的转化</br>
-    <br>2. 复制yyconfig和bmf到home</br>
+    <br>2. 复制yyconfig和upm到home</br>
     <br>3. 大小写、命名规则转换</br>
     <br>....</br>
     ]]>
@@ -29,10 +29,30 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
+    <projectService serviceInterface="space.cyberaster.common.ncc.plugin.NCCPlugin.service.Test"
+                    serviceImplementation="space.cyberaster.common.ncc.plugin.NCCPlugin.service.impl.TestImpl"/>
+    <projectService serviceImplementation="space.cyberaster.common.ncc.plugin.NCCPlugin.settings.BaseSetting"/>
   </extensions>
 
   <actions>
+
+    <group id="AsterNccTools" text="Aster的NCC开发工具" popup="true">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <action id="ncc_select" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.SelectNccHomeAction"
+              text="选择当前NCCHome" description="选择当前NCCHome"/>
+      <action id="ConfigNCCHomeAction" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.ConfigNCCHomeAction"
+              text="设置NCChome" description="设置NCChome"/>
+    </group>
+
     <!-- Add your actions here -->
+
+    <action id="ncc_copy_yyconfig" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.CopyYYConfigAction"
+            text="复制yyConfig到NChome" description="复制yyConfig到NChome">
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="before" relative-to-action="dev.extend.copy"/>
+    </action>
+    <action id="ncc_copy" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.CopyToNCHome" text="复制到NChome">
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="before" relative-to-action="dev.extend.copy"/>
+    </action>
   </actions>
 
 </idea-plugin>
