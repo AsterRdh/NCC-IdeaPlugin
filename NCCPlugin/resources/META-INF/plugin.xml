@@ -32,6 +32,12 @@
     <projectService serviceInterface="space.cyberaster.common.ncc.plugin.NCCPlugin.service.Test"
                     serviceImplementation="space.cyberaster.common.ncc.plugin.NCCPlugin.service.impl.TestImpl"/>
     <projectService serviceImplementation="space.cyberaster.common.ncc.plugin.NCCPlugin.settings.BaseSetting"/>
+    <toolWindow
+            id="AsterToolWindowFactory"
+            anchor="right"
+            icon="AllIcons.General.ExternalTools"
+            factoryClass="space.cyberaster.common.ncc.plugin.NCCPlugin.toolwindow.AsterToolWindowFactory"
+    />
   </extensions>
 
   <actions>
@@ -45,13 +51,12 @@
     </group>
 
     <!-- Add your actions here -->
-
-    <action id="ncc_copy_yyconfig" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.CopyYYConfigAction"
-            text="复制yyConfig到NChome" description="复制yyConfig到NChome">
-      <add-to-group group-id="ProjectViewPopupMenu" anchor="before" relative-to-action="dev.extend.copy"/>
-    </action>
     <action id="ncc_copy" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.CopyToNCHome" text="复制到NChome">
       <add-to-group group-id="ProjectViewPopupMenu" anchor="before" relative-to-action="dev.extend.copy"/>
+    </action>
+    <action id="AsterCaseToUTF-8" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.AsterCaseToUTF8"
+            text="转换java文件UTF-8" description="转换GBK到UTF-8">
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="ncc_copy"/>
     </action>
   </actions>
 

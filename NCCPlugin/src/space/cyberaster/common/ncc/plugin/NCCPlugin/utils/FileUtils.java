@@ -6,6 +6,11 @@ import com.intellij.openapi.vfs.VirtualFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class FileUtils {
 
@@ -21,6 +26,50 @@ public class FileUtils {
     public static void copyFile(File from, File to) throws IOException {
 
 
+    }
+    
+    public static File[] getAllFiles(VirtualFile[] virtualFiles,String ... filerFileType){
+        List<File> files = new ArrayList<>();
+        Arrays.stream(virtualFiles)
+            .filter(path -> {
+                //过滤重复关系
+                boolean isTopPath = true;
+                for (VirtualFile file : virtualFiles) {
+                    if (!file.getPath().equals(path.getPath()) && Pattern.matches(file.getPath() + (file.isDirectory() ? "/.*" : ".*"), path.getPath())) {
+                        isTopPath = false;
+                        break;
+                    }
+                }
+                return isTopPath;
+            })
+            .forEach(virtualFile -> {
+                files.add(new File(virtualFile.getPath()));
+            });
+
+        List<File> allFiles = getFileList(files.toArray(new File[0]),filerFileType);
+
+        
+        return allFiles.toArray(new File[0]);
+
+    }
+    
+    private static List<File> getFileList(File[] files,String ... filerFileType){
+        List<File> allFiles = new ArrayList<>();
+        for (File file : files) {
+            if (file.isDirectory()){
+                allFiles.addAll(getFileList(file.listFiles()));
+            }else {
+                //Pattern.matches(".*\\.META-INF.*",fFile.getPath())
+                for (String type : filerFileType) {
+                    if (Pattern.matches(type,file.getName())){
+                        allFiles.add(file);
+                    }
+                }
+
+
+            }
+        }
+        return allFiles;
     }
 
 
