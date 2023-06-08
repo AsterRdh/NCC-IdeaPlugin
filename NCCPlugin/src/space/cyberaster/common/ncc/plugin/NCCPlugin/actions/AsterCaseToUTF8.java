@@ -8,6 +8,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.apache.commons.io.IOUtils;
+import space.cyberaster.common.ncc.plugin.NCCPlugin.base.NotificationGroups;
 import space.cyberaster.common.ncc.plugin.NCCPlugin.utils.FileUtils;
 import space.cyberaster.common.ncc.plugin.NCCPlugin.utils.StringUtils;
 
@@ -56,7 +57,7 @@ public class AsterCaseToUTF8 extends AnAction {
         StringUtils.appendToStringBuilder(okList,"以下文件转换成功",content);
 
 
-        NotificationGroup notificationGroup = new NotificationGroup("testid", NotificationDisplayType.BALLOON, false);
+        NotificationGroup notificationGroup = new NotificationGroup(NotificationGroups.CASE_STR, NotificationDisplayType.BALLOON, false);
         /**
          * content :  通知内容
          * type  ：通知的类型，warning,info,error

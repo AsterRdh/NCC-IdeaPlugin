@@ -3,7 +3,12 @@ package space.cyberaster.common.ncc.plugin.NCCPlugin.utils;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.vfs.VirtualFile;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +18,32 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class FileUtils {
+
+    public static  List<VirtualFile> getOnlyFile( List<VirtualFile> okFiles){
+        return okFiles.stream().filter(path -> {
+            //过滤重复关系
+            boolean isTopPath=true;
+            for (VirtualFile file : okFiles) {
+                if (!file.getPath().equals(path.getPath()) && Pattern.matches(file.getPath() +(file.isDirectory()? "/.*":".*"),path.getPath())){
+                    isTopPath = false;
+                    break;
+                }
+            }
+            return isTopPath;
+        }).collect(Collectors.toList());
+    }
+
+    public static String getModuleName( File fileModuleXML) {
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document document = db.parse(fileModuleXML);
+            return document.getDocumentElement().getAttributeNode("name").getValue();
+        } catch (IOException | ParserConfigurationException | SAXException ioException) {
+            ioException.printStackTrace();
+        }
+        return "";
+    }
 
     public static String getFileExtension(DataContext dataContext) {
         VirtualFile file = LangDataKeys.VIRTUAL_FILE.getData(dataContext);

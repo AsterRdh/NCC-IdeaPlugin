@@ -50,7 +50,6 @@ public class SelectNCCHomeFrame extends DialogWrapper {
         });
         JLabel Label1 = new JLabel("指定NCChome");
         HomePathTextBox.setText(nccHomePath);
-        System.out.println(HomePathTextBox.getHeight());
         panel.add(Label1);
         panel.add(comboBox);
         return panel;

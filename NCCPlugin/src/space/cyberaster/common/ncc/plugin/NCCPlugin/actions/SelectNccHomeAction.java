@@ -16,12 +16,6 @@ public class SelectNccHomeAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        // TODO: insert action logic here
-        NotificationGroup notificationGroup = new NotificationGroup("testid", NotificationDisplayType.BALLOON, false);
-        /**
-         * content :  通知内容
-         * type  ：通知的类型，warning,info,error
-         */
         BaseSetting setting = BaseSetting.getInstance(e.getProject());
         String nccHome = setting.getNccHome();
         System.out.println(nccHome);

@@ -33,7 +33,7 @@
                     serviceImplementation="space.cyberaster.common.ncc.plugin.NCCPlugin.service.impl.TestImpl"/>
     <projectService serviceImplementation="space.cyberaster.common.ncc.plugin.NCCPlugin.settings.BaseSetting"/>
     <toolWindow
-            id="AsterToolWindowFactory"
+            id="Aster的开发工具箱"
             anchor="right"
             icon="AllIcons.General.ExternalTools"
             factoryClass="space.cyberaster.common.ncc.plugin.NCCPlugin.toolwindow.AsterToolWindowFactory"
@@ -54,9 +54,15 @@
     <action id="ncc_copy" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.CopyToNCHome" text="复制到NChome">
       <add-to-group group-id="ProjectViewPopupMenu" anchor="before" relative-to-action="dev.extend.copy"/>
     </action>
+    <action id="ncc_copy_module" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.CopyToNCHomeWithDefModule" text="复制到NChome指定模块">
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="before" relative-to-action="ncc_copy"/>
+    </action>
+    <action id="ncc_create_yyconfig" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.CreateYYConfigAction" text="生成yyConfig文件夹">
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="before" relative-to-action="ncc_copy_module"/>
+    </action>
     <action id="AsterCaseToUTF-8" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.AsterCaseToUTF8"
             text="转换java文件UTF-8" description="转换GBK到UTF-8">
-      <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="ncc_copy"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="ncc_copy_module"/>
     </action>
   </actions>
 
