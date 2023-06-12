@@ -19,7 +19,7 @@ public class CreateYYConfigAction extends AnAction {
     @Override
     public void update(AnActionEvent event) {//根据扩展名是否是支持，显示隐藏此Action
         selectFile = LangDataKeys.VIRTUAL_FILE.getData(event.getDataContext());
-        boolean show = selectFile.isDirectory() && selectFile.getName().equals("client");
+        boolean show = selectFile!=null && selectFile.isDirectory() && selectFile.getName().equals("client");
         event.getPresentation().setVisible(show);
     }
     @Override

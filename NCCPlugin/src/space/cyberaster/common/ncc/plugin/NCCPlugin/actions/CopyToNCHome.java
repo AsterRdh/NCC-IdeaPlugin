@@ -26,25 +26,26 @@ public class CopyToNCHome extends AnAction {
         super.update(event);
         selectFiles = LangDataKeys.VIRTUAL_FILE_ARRAY.getData(event.getDataContext());
         boolean okFile = false;
-        for (VirtualFile file : selectFiles) {
-            if (file != null){
-                FileType type = FileType.getFileType(file);
-                switch (type){
-                    case UNKNOWN:
-                        okFile = false;
-                        break;
-                    case DIRECTORY:
-                        String path = file.getPath();
-                        okFile = Pattern.matches(".*/yyconfig",path)
-                                || Pattern.matches(".*/yyconfig/.*",path)
-                                || file.getName().equals("META-INF");
-                        break;
-                    default:
-                        okFile = true;
+        if (selectFiles != null )
+            for (VirtualFile file : selectFiles) {
+                if (file != null){
+                    FileType type = FileType.getFileType(file);
+                    switch (type){
+                        case UNKNOWN:
+                            okFile = false;
+                            break;
+                        case DIRECTORY:
+                            String path = file.getPath();
+                            okFile = Pattern.matches(".*/yyconfig",path)
+                                    || Pattern.matches(".*/yyconfig/.*",path)
+                                    || file.getName().equals("META-INF");
+                            break;
+                        default:
+                            okFile = true;
+                    }
                 }
+                if (okFile) break;
             }
-            if (okFile) break;
-        }
         event.getPresentation().setVisible(okFile);
     }
 

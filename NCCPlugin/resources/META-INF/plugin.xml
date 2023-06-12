@@ -50,6 +50,21 @@
               text="设置NCChome" description="设置NCChome"/>
     </group>
 
+    <group id="CodeCaseTools" text="转换命名法" popup="true">
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <action id="caseToCamelCase" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.cases.CamelCaseAction"
+              text="转换为驼峰式" description="转换为驼峰式"/>
+      <action id="caseToPascaCase" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.cases.PascalCaseAction"
+              text="转换为大驼峰式" description="转换为大驼峰式"/>
+      <action id="caseToSnakeCase" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.cases.SnakeCaseAction"
+              text="转换为下划线式(小写)" description="转换为下划线式(小写)"/>
+      <action id="caseToBigSnakeCase" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.cases.BigSnakeCaseAction"
+              text="转换为下划线式(大写)" description="转换为下划线式(大写)"/>
+      <action id="caseToMidSnakeCase" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.cases.MidSnakeCaseAction"
+              text="转换为中划线式" description="转换为中划线式(大写)"/>
+
+    </group>
+
     <!-- Add your actions here -->
     <action id="ncc_copy" class="space.cyberaster.common.ncc.plugin.NCCPlugin.actions.CopyToNCHome" text="复制到NChome">
       <add-to-group group-id="ProjectViewPopupMenu" anchor="before" relative-to-action="dev.extend.copy"/>
